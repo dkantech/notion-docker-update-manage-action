@@ -1,0 +1,27 @@
+name: "Notion Docker Update Manage"
+description: "Notion Docker Update Manage"
+author: "dkantech"
+inputs:
+  notion_token:
+    description: "Notion API token"
+    required: true
+  database_id:
+    description: "Notion database ID"
+    required: true
+  docker_image_tag_name:
+    description: "Docker tag name"
+    required: true
+  docker_image_full_name:
+    description: "Full Docker image name"
+    required: true
+  content:
+    description: "Content description"
+    required: true
+  type:
+    description: "Entry type"
+    required: true
+
+runs:
+  using: "docker"
+  image: "alpine:3.12"
+  entrypoint: ["/entrypoint.sh"]
