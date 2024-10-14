@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Run Notion Update Action
-      uses: dkantech/notion-docker-update-manage-action@v1
+      uses: dkantech/notion-docker-update-manage-action
       with:
         notion_token: ${{ secrets.NOTION_TOKEN }}
         database_id: ${{ secrets.NOTION_UPDATE_MANAGE_DATABASE_ID }}
