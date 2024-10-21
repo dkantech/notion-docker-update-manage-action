@@ -2,13 +2,6 @@
 
 set -e
 
-# NOTION_TOKEN=$1
-# DATABASE_ID=$2
-# DOCKER_IMAGE_TAG_NAME=$3
-# DOCKER_IMAGE_FULL_NAME=$4
-# CONTENT=$5
-# TYPE=$6
-
 
 NOTION_TOKEN=${INPUT_NOTION_TOKEN}
 DATABASE_ID=${INPUT_DATABASE_ID}
@@ -18,9 +11,8 @@ CONTENT=${INPUT_CONTENT}
 TYPE=${INPUT_TYPE}
 
 
-echo "Notion token: $NOTION_TOKEN"
-echo "Notion token: ${NOTION_TOKEN:0:4}****"  # 마스킹된 토큰 출력
-echo "Database ID: $DATABASE_ID"
+echo "Notion token: ${NOTION_TOKEN:0:3}****"  # 마스킹된 토큰 출력
+echo "Database ID: ${DATABASE_ID:0:3}****"
 echo "Docker Image Tag Name: $DOCKER_IMAGE_TAG_NAME"
 echo "Docker Image Full Name: $DOCKER_IMAGE_FULL_NAME"
 echo "Content: $CONTENT"
