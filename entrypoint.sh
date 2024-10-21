@@ -9,6 +9,15 @@ DOCKER_IMAGE_FULL_NAME=$4
 CONTENT=$5
 TYPE=$6
 
+
+echo "Notion token: $NOTION_TOKEN"
+echo "Database ID: $DATABASE_ID"
+echo "Docker Image Tag Name: $DOCKER_IMAGE_TAG_NAME"
+echo "Docker Image Full Name: $DOCKER_IMAGE_FULL_NAME"
+echo "Content: $CONTENT"
+echo "Type: $TYPE"
+
+
 curl -X POST "https://api.notion.com/v1/pages" \
   -H "Authorization: Bearer $NOTION_TOKEN" \
   -H "Content-Type: application/json" \
