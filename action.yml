@@ -23,5 +23,5 @@ inputs:
 
 runs:
   using: "docker"
-  image: "alpine:3.12"
+  image: "docker://alpine:3.12"
   entrypoint: "/entrypoint.sh"
