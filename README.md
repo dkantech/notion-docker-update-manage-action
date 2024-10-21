@@ -19,13 +19,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
+    
+    # 도커 태그를 날짜로 할 경우, 날짜를 얻는 스크립트
+    - name: Setup Date environment
+      run: echo "branch_date=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_ENV
+      
+    # 얻은 날짜를 확인하는 스크립트
+    - name: Print Date
+      run: echo "✨Build time is ${{env.branch_date}}✨"
+
+    # 깃의 커밋메시지를 얻는 스크립트
+    - name: Get commit message
+      run: |
+        echo "commit_message=$(git log -1 --pretty=%B $GITHUB_SHA)" >> $GITHUB_ENV
+      
+    # 깃의 커밋메시지를 확인하는 스크립트
+    - name: Print Commit Message
+      run: echo "Commit Message - ${{env.commit_message}}"
+
+    # 노션API를 사용하여 입력하는 스크립트
     - name: Run Notion Update Action
       uses: dkantech/notion-docker-update-manage-action@v1
       with:
         notion_token: ${{ secrets.NOTION_TOKEN }}
         database_id: ${{ secrets.NOTION_UPDATE_MANAGE_DATABASE_ID }}
-        docker_image_tag_name: "테스트태그"
-        docker_image_full_name: "테스트이미지명"
-        content: "내용입니다"
-        type: "테스트종류"
+        docker_image_tag_name: "${{env.branch_date}}"
+        docker_image_full_name: "dkantech/platform_backend_integrated:${{env.branch_date}}"
+        content: "${{env.commit_message}}"
+        type: ""  # 여기에는 버전 자동화를 수행하는 서버의 구분자를 입력
 ```
