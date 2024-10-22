@@ -14,6 +14,12 @@
 ## Example Usage
 
 ```yaml
+env:
+  GH_TOKEN: ${{ secrets.TOKEN }}
+  REPO_NAME: ''
+  NOTION_INPUT_TYPE: '' # 여기에는 버전 자동화를 수행하는 서버의 구분자를 입력
+
+
 jobs:
   notion-update:
     runs-on: ubuntu-latest
@@ -45,7 +51,7 @@ jobs:
         notion_token: ${{ secrets.NOTION_TOKEN }}
         database_id: ${{ secrets.NOTION_UPDATE_MANAGE_DATABASE_ID }}
         docker_image_tag_name: "${{env.branch_date}}"
-        docker_image_full_name: "dkantech/platform_backend_integrated:${{env.branch_date}}"
+        docker_image_full_name: "${{REPO_NAME}}:${{env.branch_date}}"
         content: "${{env.commit_message}}"
-        type: ""  # 여기에는 버전 자동화를 수행하는 서버의 구분자를 입력
+        type: "${{env.NOTION_INPUT_TYPE}}"
 ```
